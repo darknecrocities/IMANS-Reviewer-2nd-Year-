@@ -37,113 +37,107 @@ Welcome to the ultimate SQL learning guide! This repository contains **110 lesso
 4. **Creating a Database**  
    ```sql
    CREATE DATABASE my_database;
+   ```
 
-Dropping a Database
-
-sql
-Copy
+5. **Dropping a Database**
+```
 DROP DATABASE my_database;
-Using a Database
-
-sql
-Copy
+```
+6. **Using a Database**
+```
 USE my_database;
-SQL Data Types
-Learn about INT, VARCHAR, DATE, BOOLEAN, etc.
+```
+7. **SQL Data Types**
+- Learn about INT, VARCHAR, DATE, BOOLEAN, etc.
 
-Creating a Table
+8. **Creating a Table**
 
-sql
-Copy
+```
 CREATE TABLE users (
     id INT PRIMARY KEY,
     name VARCHAR(50)
 );
-Dropping a Table
+```
+9. **Dropping a Table**
 
-sql
-Copy
+```
 DROP TABLE users;
-Inserting Data into a Table
+```
+10. **Inserting Data into a Table**
 
-sql
-Copy
+```
 INSERT INTO users (id, name) VALUES (1, 'John Doe');
-Basic SQL Queries 🛠️
-Selecting Data
+```
+## Basic SQL Queries 🛠️
+11. **Selecting Data**
 
-sql
-Copy
+```
 SELECT * FROM users;
-Selecting Specific Columns
-
-sql
-Copy
+```
+12. **Selecting Specific Columns**
+```
 SELECT name FROM users;
-Limiting Results
-
-sql
-Copy
+```
+13. **Limiting Results**
+```
 SELECT * FROM users LIMIT 5;
-Aliasing Columns
+```
+14. **Aliasing Columns**
 
-sql
-Copy
+```
 SELECT name AS full_name FROM users;
-Concatenating Columns
-
-sql
-Copy
+```
+15. **Concatenating Columns**
+```
 SELECT CONCAT(name, ' - ', id) AS user_info FROM users;
-Using DISTINCT
-
-sql
-Copy
+```
+16. **Using DISTINCT**
+```
 SELECT DISTINCT name FROM users;
-Counting Rows
-
-sql
-Copy
+```
+17. **Counting Rows**
+```
 SELECT COUNT(*) FROM users;
-Basic Arithmetic in SQL
-
-sql
-Copy
+```
+18. **Basic Arithmetic in SQL**
+```
 SELECT (price * quantity) AS total_cost FROM orders;
-Commenting in SQL
+```
+19. **Commenting in SQL**
 
-sql
-Copy
+```
 -- This is a single-line comment
 /* This is a multi-line comment */
-Using NULL Values
-
-sql
-Copy
+```
+20. **Using NULL Values**
+```
 SELECT * FROM users WHERE name IS NULL;
-Filtering Data 🔍
-WHERE Clause
+```
 
-sql
-Copy
+##Filtering Data 🔍
+21. **WHERE Clause**
+```
 SELECT * FROM users WHERE id = 1;
-Comparison Operators
+```
+
+22. **Comparison Operators**
+
 Learn about =, !=, >, <, >=, <=.
 
-Logical Operators
+23. **Logical Operators**
 Learn about AND, OR, NOT.
 
-Filtering with BETWEEN
+24. **Filtering with BETWEEN**
 
-sql
-Copy
+```
 SELECT * FROM users WHERE age BETWEEN 18 AND 30;
-Filtering with IN
+```
 
-sql
-Copy
+25. **Filtering with IN**
+```
 SELECT * FROM users WHERE id IN (1, 2, 3);
-Filtering with LIKE
+```
+26. **Filtering with LIKE**
 
 sql
 Copy
