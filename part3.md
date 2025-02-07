@@ -139,79 +139,71 @@ SELECT * FROM users WHERE id IN (1, 2, 3);
 ```
 26. **Filtering with LIKE**
 
-sql
-Copy
+```
 SELECT * FROM users WHERE name LIKE 'J%';
-Filtering with Wildcards
-Learn about % and _.
+```
+27. **Filtering with Wildcards**
+- Learn about % and _.
 
-Combining Conditions
-
-sql
-Copy
+28. **Combining Conditions**
+```
 SELECT * FROM users WHERE age > 18 AND name LIKE 'J%';
-Using NOT with Conditions
-
-sql
-Copy
+```
+29. **Using NOT with Conditions**
+```
 SELECT * FROM users WHERE NOT age > 18;
-Filtering Dates
-
-sql
-Copy
+```
+30. **Filtering Dates**
+```
 SELECT * FROM orders WHERE order_date = '2023-10-01';
-Sorting Data 🔄
-ORDER BY Clause
-
-sql
-Copy
+```
+## Sorting Data 🔄
+31. **ORDER BY Clause**
+```
 SELECT * FROM users ORDER BY name ASC;
-Sorting by Multiple Columns
-
-sql
-Copy
+```
+32. **Sorting by Multiple Columns**
+```
 SELECT * FROM users ORDER BY name ASC, age DESC;
-Sorting with NULL Values
-
-sql
-Copy
+```
+33. **Sorting with NULL Values**
+```
 SELECT * FROM users ORDER BY name ASC NULLS LAST;
-Random Sorting
-
-sql
-Copy
+```
+34. **Random Sorting**
+```
 SELECT * FROM users ORDER BY RAND();
-Sorting with Expressions
-
-sql
-Copy
+```
+35. **Sorting with Expressions**
+```
 SELECT * FROM users ORDER BY LENGTH(name) DESC;
-Aggregate Functions 📊
-SUM Function
+```
+## Aggregate Functions 📊
+36. **SUM Function**
 
-sql
-Copy
+```
 SELECT SUM(price) FROM orders;
-AVG Function
+```
 
-sql
-Copy
+37. **AVG Function**
+
+```
 SELECT AVG(age) FROM users;
-MIN Function
+```
+38. **MIN Function**
 
-sql
-Copy
+```
 SELECT MIN(price) FROM orders;
-MAX Function
-
-sql
-Copy
+```
+39. **MAX Function**
+```
 SELECT MAX(age) FROM users;
-COUNT Function
+```
+40. **COUNT Function**
 
-sql
-Copy
+```
 SELECT COUNT(*) FROM users;
+```
 GROUP_CONCAT Function
 
 sql
