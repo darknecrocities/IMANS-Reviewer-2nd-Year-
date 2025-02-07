@@ -1,0 +1,101 @@
+-- 50 SQL Querying Tasks
+
+-- 1. Retrieve all users
+
+-- 2. Retrieve all products in the 'Electronics' category
+
+-- 3. Get all orders placed by 'Alice Johnson'
+
+-- 4. Find the total number of products in stock
+
+-- 5. Retrieve the most expensive product
+
+-- 6. Retrieve all orders with their respective users
+
+-- 7. Find the total revenue from all orders
+
+-- 8. List the number of orders each user has placed
+
+-- 9. Retrieve details of pending payments
+
+-- 10. Retrieve all users who have made a purchase
+
+-- 11. Get the total number of orders placed per day
+
+-- 12. Find the user who has spent the most money
+
+-- 13. Get the total number of items sold per product
+
+-- 14. List all products with less than 5 in stock
+
+-- 15. Retrieve the latest 5 orders placed
+
+-- 16. Find the average order value
+
+-- 17. Retrieve all users who haven't placed an order
+
+-- 18. Get the total revenue generated per product
+
+-- 19. Find the top 3 best-selling products
+
+-- 20. List all orders with their payment status
+
+-- 21. Find the most frequently used payment method
+
+-- 22. Get the total number of customers
+
+-- 23. Retrieve all orders where total amount is greater than $500
+
+-- 24. List all products that have never been ordered
+
+-- 25. Retrieve all orders along with the total number of items in each order
+
+-- 26. Find the total revenue per user
+
+-- 27. Retrieve the most recent order per user
+
+-- 28. Find users who have ordered more than once
+
+-- 29. Find the total quantity of each product sold
+
+-- 30. Retrieve all payments made using 'Credit Card'
+
+-- 31. Retrieve orders that contain more than 2 items
+
+-- 32. Retrieve orders sorted by highest total amount
+
+-- 33. Find the average number of items per order
+
+-- 34. Find all users who have placed orders but never completed a payment
+
+-- 35. Retrieve the total number of orders per month
+
+-- 36. Find users who ordered the same product more than once
+
+-- 37. Retrieve the last payment made
+
+-- 38. Find orders with the highest number of different products
+
+-- 39. Find users who have purchased every product category
+
+-- 40. Find the product with the lowest stock
+
+-- 41. Retrieve all orders placed on weekends
+
+-- 42. Get the total revenue generated per category
+
+-- 43. Find the oldest customer
+
+-- 44. Find orders that contain both 'Laptop' and 'Smartphone'
+
+-- 45. Find products purchased by more than 3 different users
+
+-- 46. Retrieve orders where total amount is exactly $199.99
+
+-- 47. Find the percentage of completed payments
+
+-- 48. Retrieve products purchased by 'Alice Johnson'
+
+-- 49. Find the most recent order that was paid with PayPal
+
+-- 50. Find the order with the highest number of items
