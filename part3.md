@@ -204,248 +204,211 @@ SELECT MAX(age) FROM users;
 ```
 SELECT COUNT(*) FROM users;
 ```
-GROUP_CONCAT Function
-
-sql
-Copy
+41. **GROUP_CONCAT Function**
+```
 SELECT GROUP_CONCAT(name) FROM users;
-Using Aggregate Functions with WHERE
-
-sql
-Copy
+```
+42. **Using Aggregate Functions with WHERE**
+```
 SELECT AVG(age) FROM users WHERE age > 18;
-Handling NULLs in Aggregates
-
-sql
-Copy
+```
+43. **Handling NULLs in Aggregates**
+```
 SELECT AVG(COALESCE(age, 0)) FROM users;
-Aggregates with DISTINCT
-
-sql
-Copy
+```
+44. **Aggregates with DISTINCT**
+```
 SELECT COUNT(DISTINCT name) FROM users;
-Nested Aggregates
-
-sql
-Copy
+```
+45. **Nested Aggregates**
+```
 SELECT MAX(AVG(price)) FROM orders;
-Grouping Data 🧩
-GROUP BY Clause
-
-sql
-Copy
+```
+## Grouping Data 🧩
+46. **GROUP BY Clause**
+```
 SELECT age, COUNT(*) FROM users GROUP BY age;
-HAVING Clause
-
-sql
-Copy
+```
+47. **HAVING Clause**
+```
 SELECT age, COUNT(*) FROM users GROUP BY age HAVING COUNT(*) > 5;
-GROUP BY with Multiple Columns
-
-sql
-Copy
+```
+46. **GROUP BY with Multiple Columns**
+```
 SELECT age, gender, COUNT(*) FROM users GROUP BY age, gender;
-GROUP BY with ORDER BY
-
-sql
-Copy
+```
+47. **GROUP BY with ORDER BY**
+```
 SELECT age, COUNT(*) FROM users GROUP BY age ORDER BY COUNT(*) DESC;
-GROUP BY with WHERE
-
-sql
-Copy
+```
+48. **GROUP BY with WHERE**
+```
 SELECT age, COUNT(*) FROM users WHERE age > 18 GROUP BY age;
-Joins 🤝
-Inner Join
-
-sql
-Copy
+```
+## Joins 🤝
+49. **Inner Join**
+```
 SELECT users.name, orders.price 
 FROM users 
 INNER JOIN orders ON users.id = orders.user_id;
-Left Join
-
-sql
-Copy
+```
+50. **Left Join**
+```
 SELECT users.name, orders.price 
 FROM users 
 LEFT JOIN orders ON users.id = orders.user_id;
-Right Join
-
-sql
-Copy
+```
+51. **Right Join**
+```
 SELECT users.name, orders.price 
 FROM users 
 RIGHT JOIN orders ON users.id = orders.user_id;
-Full Outer Join
-
-sql
-Copy
+```
+52. **Full Outer Join**
+```
 SELECT users.name, orders.price 
 FROM users 
 FULL OUTER JOIN orders ON users.id = orders.user_id;
-Cross Join
-
-sql
-Copy
+```
+53. **Cross Join**
+```
 SELECT users.name, orders.price 
 FROM users 
 CROSS JOIN orders;
-Self Join
-
-sql
-Copy
+```
+54. **Self Join**
+```
 SELECT a.name, b.name 
 FROM users a, users b 
 WHERE a.id = b.manager_id;
-Natural Join
-
-sql
-Copy
+```
+55. **Natural Join**
+```
 SELECT * FROM users NATURAL JOIN orders;
-Join with WHERE Clause
-
-sql
-Copy
+```
+56. **Join with WHERE Clause**
+```
 SELECT users.name, orders.price 
 FROM users 
 JOIN orders ON users.id = orders.user_id 
 WHERE orders.price > 100;
-Join with Aggregate Functions
-
-sql
-Copy
+```
+57. **Join with Aggregate Functions**
+```
 SELECT users.name, SUM(orders.price) 
 FROM users 
 JOIN orders ON users.id = orders.user_id 
 GROUP BY users.name;
-Join with Subqueries
-
-sql
-Copy
+```
+58. **Join with Subqueries**
+```
 SELECT users.name, orders.price 
 FROM users 
 JOIN (SELECT * FROM orders WHERE price > 100) AS orders 
 ON users.id = orders.user_id;
-Subqueries 🧠
-Basic Subquery
-
-sql
-Copy
+```
+## Subqueries 🧠
+59. **Basic Subquery**
+```
 SELECT name FROM users WHERE id = (SELECT user_id FROM orders WHERE price > 100);
-Subquery in WHERE Clause
-
-sql
-Copy
+```
+60. **Subquery in WHERE Clause**
+```
 SELECT * FROM users WHERE age > (SELECT AVG(age) FROM users);
-Subquery in SELECT Clause
-
-sql
-Copy
+```
+61. **Subquery in SELECT Clause**
+```
 SELECT name, (SELECT COUNT(*) FROM orders WHERE orders.user_id = users.id) AS order_count 
 FROM users;
-Subquery in FROM Clause
-
-sql
-Copy
+```
+62. **Subquery in FROM Clause**
+```
 SELECT * FROM (SELECT * FROM users WHERE age > 18) AS adults;
-Correlated Subquery
-
-sql
-Copy
+```
+63. **Correlated Subquery**
+```
 SELECT name FROM users WHERE EXISTS (SELECT 1 FROM orders WHERE orders.user_id = users.id);
-Subquery with IN
-
-sql
-Copy
+```
+64. **Subquery with IN**
+```
 SELECT * FROM users WHERE id IN (SELECT user_id FROM orders);
-Subquery with ANY/SOME
-
-sql
-Copy
+```
+65. **Subquery with ANY/SOME**
+```
 SELECT * FROM users WHERE age > ANY (SELECT age FROM users WHERE gender = 'Male');
-Subquery with ALL
-
-sql
-Copy
+```
+66. **Subquery with ALL**
+```
 SELECT * FROM users WHERE age > ALL (SELECT age FROM users WHERE gender = 'Female');
-Subquery with EXISTS
-
-sql
-Copy
+```
+67. **Subquery with EXISTS**
+```
 SELECT * FROM users WHERE EXISTS (SELECT 1 FROM orders WHERE orders.user_id = users.id);
-Subquery with NOT EXISTS
-
-sql
-Copy
+```
+68. **Subquery with NOT EXISTS**
+```
 SELECT * FROM users WHERE NOT EXISTS (SELECT 1 FROM orders WHERE orders.user_id = users.id);
-Advanced SQL Concepts 🚀
-Window Functions
+```
+## Advanced SQL Concepts 🚀
+69. **Window Functions**
 
-sql
-Copy
+```
 SELECT name, ROW_NUMBER() OVER (ORDER BY age) FROM users;
-Common Table Expressions (CTEs)
+```
+70. **Common Table Expressions (CTEs)**
 
-sql
-Copy
+```
 WITH adult_users AS (SELECT * FROM users WHERE age > 18) 
 SELECT * FROM adult_users;
-Recursive CTEs
-
-sql
-Copy
+```
+71. **Recursive CTEs**
+```
 WITH RECURSIVE numbers AS (
     SELECT 1 AS n 
     UNION ALL 
     SELECT n + 1 FROM numbers WHERE n < 10
 ) 
 SELECT * FROM numbers;
-Pivoting Data
-
-sql
-Copy
+```
+72. **Pivoting Data**
+```
 SELECT * FROM crosstab('SELECT name, age, COUNT(*) FROM users GROUP BY name, age');
-Unpivoting Data
-
-sql
-Copy
+```
+73. **Unpivoting Data**
+```
 SELECT name, key, value FROM users UNPIVOT (value FOR key IN (age, gender));
-Indexes
-
-sql
-Copy
+```
+74. **Indexes**
+```
 CREATE INDEX idx_name ON users (name);
-Views
-
-sql
-Copy
+```
+75. **Views**
+```
 CREATE VIEW adult_users AS SELECT * FROM users WHERE age > 18;
-Stored Procedures
-
-sql
-Copy
+```
+76. **Stored Procedures**
+```
 CREATE PROCEDURE GetAdultUsers() 
 BEGIN 
     SELECT * FROM users WHERE age > 18; 
 END;
-Triggers
+```
+77. **Triggers**
 
-sql
-Copy
+```
 CREATE TRIGGER before_insert_users 
 BEFORE INSERT ON users 
 FOR EACH ROW 
 SET NEW.created_at = NOW();
-Transactions
-
-sql
-Copy
+```
+78. **Transactions**
+```
 BEGIN;
 INSERT INTO users (name) VALUES ('John Doe');
 COMMIT;
-Practice Exercises 🏋️‍♂️
-Exercise: Basic Queries
+```
+## Practice Exercises 🏋️‍♂️
+```Exercise: Basic Queries
 Write a query to select all users older than 25.
 
 Exercise: Filtering
@@ -474,72 +437,70 @@ Use a CTE to find the top 5 oldest users.
 
 Exercise: Transactions
 Write a transaction to update a user's age and log the change.
+```
+## Bonus Lessons 🎁
+**SQL Injection Prevention**
+- Use parameterized queries to prevent SQL injection.
 
-Bonus Lessons 🎁
-SQL Injection Prevention
-Use parameterized queries to prevent SQL injection.
+**Optimizing Queries**
+- Learn about query execution plans and indexing.
 
-Optimizing Queries
-Learn about query execution plans and indexing.
+**Database Normalization**
+- Understand 1NF, 2NF, 3NF, and BCNF.
 
-Database Normalization
-Understand 1NF, 2NF, 3NF, and BCNF.
+**Denormalization**
+- When and why to denormalize a database.
 
-Denormalization
-When and why to denormalize a database.
+**Backup and Recovery**
+- Learn how to backup and restore databases.
 
-Backup and Recovery
-Learn how to backup and restore databases.
+**Database Security**
+- Implement user roles and permissions.
 
-Database Security
-Implement user roles and permissions.
+**SQL in Web Development**
+- Integrate SQL with backend frameworks like Django or Node.js.
 
-SQL in Web Development
-Integrate SQL with backend frameworks like Django or Node.js.
+**SQL in Data Science**
+- Use SQL for data analysis and visualization.
 
-SQL in Data Science
-Use SQL for data analysis and visualization.
+**SQL in Cloud Platforms**
+- Learn about SQL on AWS, GCP, and Azure.
 
-SQL in Cloud Platforms
-Learn about SQL on AWS, GCP, and Azure.
+**SQL Certifications**
+- Explore SQL certifications like MySQL, PostgreSQL, and Oracle.
 
-SQL Certifications
-Explore SQL certifications like MySQL, PostgreSQL, and Oracle.
+## Final Notes 📝
+**Practice Regularly*
+- SQL is best learned by doing. Practice daily!
 
-Final Notes 📝
-Practice Regularly
-SQL is best learned by doing. Practice daily!
+**Join SQL Communities*
+- Engage with SQL communities on Reddit, Stack Overflow, and Discord.
 
-Join SQL Communities
-Engage with SQL communities on Reddit, Stack Overflow, and Discord.
+**Read SQL Documentation*
+- Always refer to official documentation for your SQL dialect.
 
-Read SQL Documentation
-Always refer to official documentation for your SQL dialect.
+**Build Projects*
+- Apply SQL in real-world projects like e-commerce or analytics dashboards.
 
-Build Projects
-Apply SQL in real-world projects like e-commerce or analytics dashboards.
+**Stay Updated*
+- SQL evolves. Stay updated with new features and best practices.
 
-Stay Updated
-SQL evolves. Stay updated with new features and best practices.
+**Teach Others*
+- Teaching is the best way to solidify your knowledge.
 
-Teach Others
-Teaching is the best way to solidify your knowledge.
+**Explore Advanced Topics*
+- Dive into advanced topics like partitioning, sharding, and replication.
 
-Explore Advanced Topics
-Dive into advanced topics like partitioning, sharding, and replication.
+**Use SQL Tools*
+- Explore tools like pgAdmin, MySQL Workbench, and DBeaver.
 
-Use SQL Tools
-Explore tools like pgAdmin, MySQL Workbench, and DBeaver.
+**Contribute to Open Source*
+- Contribute to open-source SQL projects on GitHub.
 
-Contribute to Open Source
-Contribute to open-source SQL projects on GitHub.
+**Never Stop Learning*
+- SQL is vast. Keep exploring and learning new concepts.**
 
-Never Stop Learning
-SQL is vast. Keep exploring and learning new concepts.
-
-Happy querying! 🎉
-
-Copy
+## Happy querying! 🎉
 
 ### How to Use:
 1. Copy the above content.
