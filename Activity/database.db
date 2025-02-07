@@ -1,0 +1,76 @@
+
+-- 1. Create the database
+CREATE DATABASE ECommerceDB;
+USE ECommerceDB;
+
+-- 2. Users Table
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3. Products Table
+CREATE TABLE Products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    category VARCHAR(100),
+    price DECIMAL(10,2),
+    stock INT
+);
+
+-- 4. Orders Table
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+-- 5. Order_Items Table
+CREATE TABLE Order_Items (
+    order_item_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    subtotal DECIMAL(10,2),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+-- 6. Payments Table
+CREATE TABLE Payments (
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    payment_method VARCHAR(50),
+    payment_status VARCHAR(50),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
+
+-- 7. Insert Sample Data
+INSERT INTO Users (name, email) VALUES
+    ('Alice Johnson', 'alice@example.com'),
+    ('Bob Smith', 'bob@example.com'),
+    ('Charlie Brown', 'charlie@example.com');
+
+INSERT INTO Products (name, category, price, stock) VALUES
+    ('Laptop', 'Electronics', 999.99, 10),
+    ('Smartphone', 'Electronics', 699.99, 20),
+    ('Headphones', 'Accessories', 199.99, 15),
+    ('Backpack', 'Bags', 49.99, 30);
+
+INSERT INTO Orders (user_id, total_amount) VALUES
+    (1, 1699.98), (2, 199.99), (3, 49.99);
+
+INSERT INTO Order_Items (order_id, product_id, quantity, subtotal) VALUES
+    (1, 1, 1, 999.99),
+    (1, 2, 1, 699.99),
+    (2, 3, 1, 199.99),
+    (3, 4, 1, 49.99);
+
+INSERT INTO Payments (order_id, payment_method, payment_status) VALUES
+    (1, 'Credit Card', 'Completed'),
+    (2, 'PayPal', 'Pending'),
+    (3, 'Debit Card', 'Completed');
