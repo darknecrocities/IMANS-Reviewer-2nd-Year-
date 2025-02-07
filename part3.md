@@ -114,7 +114,7 @@ SELECT (price * quantity) AS total_cost FROM orders;
 SELECT * FROM users WHERE name IS NULL;
 ```
 
-##Filtering Data 🔍
+## Filtering Data 🔍
 21. **WHERE Clause**
 ```
 SELECT * FROM users WHERE id = 1;
