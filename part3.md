@@ -37,6 +37,7 @@ Welcome to the ultimate SQL learning guide! This repository contains **110 lesso
 4. **Creating a Database**  
    ```sql
    CREATE DATABASE my_database;
+
 Dropping a Database
 
 sql
