@@ -1,0 +1,168 @@
+-- 50 SQL Querying Tasks
+
+-- 1. Retrieve all users
+SELECT * FROM Users;
+
+-- 2. Retrieve all products in the 'Electronics' category
+SELECT * FROM Products WHERE category = 'Electronics';
+
+-- 3. Get all orders placed by 'Alice Johnson'
+SELECT * FROM Orders WHERE user_id = (SELECT user_id FROM Users WHERE name = 'Alice Johnson');
+
+-- 4. Find the total number of products in stock
+SELECT SUM(stock) AS total_stock FROM Products;
+
+-- 5. Retrieve the most expensive product
+SELECT * FROM Products ORDER BY price DESC LIMIT 1;
+
+-- 6. Retrieve all orders with their respective users
+SELECT Orders.*, Users.name FROM Orders JOIN Users ON Orders.user_id = Users.user_id;
+
+-- 7. Find the total revenue from all orders
+SELECT SUM(total_amount) AS total_revenue FROM Orders;
+
+-- 8. List the number of orders each user has placed
+SELECT user_id, COUNT(*) AS order_count FROM Orders GROUP BY user_id;
+
+-- 9. Retrieve details of pending payments
+SELECT * FROM Payments WHERE payment_status = 'Pending';
+
+-- 10. Retrieve all users who have made a purchase
+SELECT DISTINCT Users.* FROM Users JOIN Orders ON Users.user_id = Orders.user_id;
+
+-- 11. Get the total number of orders placed per day
+SELECT DATE(order_date) AS order_day, COUNT(*) AS order_count FROM Orders GROUP BY order_day;
+
+-- 12. Find the user who has spent the most money
+SELECT Users.name, SUM(Orders.total_amount) AS total_spent 
+FROM Users JOIN Orders ON Users.user_id = Orders.user_id 
+GROUP BY Users.name ORDER BY total_spent DESC LIMIT 1;
+
+-- 13. Get the total number of items sold per product
+SELECT product_id, SUM(quantity) AS total_sold FROM Order_Items GROUP BY product_id;
+
+-- 14. List all products with less than 5 in stock
+SELECT * FROM Products WHERE stock < 5;
+
+-- 15. Retrieve the latest 5 orders placed
+SELECT * FROM Orders ORDER BY order_date DESC LIMIT 5;
+
+-- 16. Find the average order value
+SELECT AVG(total_amount) AS avg_order_value FROM Orders;
+
+-- 17. Retrieve all users who haven't placed an order
+SELECT * FROM Users WHERE user_id NOT IN (SELECT DISTINCT user_id FROM Orders);
+
+-- 18. Get the total revenue generated per product
+SELECT Products.name, SUM(Order_Items.subtotal) AS total_revenue FROM Products 
+JOIN Order_Items ON Products.product_id = Order_Items.product_id GROUP BY Products.name;
+
+-- 19. Find the top 3 best-selling products
+SELECT Products.name, SUM(Order_Items.quantity) AS total_sold FROM Products 
+JOIN Order_Items ON Products.product_id = Order_Items.product_id GROUP BY Products.name ORDER BY total_sold DESC LIMIT 3;
+
+-- 20. List all orders with their payment status
+SELECT Orders.*, Payments.payment_status FROM Orders 
+JOIN Payments ON Orders.order_id = Payments.order_id;
+
+-- 21. Find the most frequently used payment method
+SELECT payment_method, COUNT(*) AS usage_count FROM Payments GROUP BY payment_method ORDER BY usage_count DESC LIMIT 1;
+
+-- 22. Get the total number of customers
+SELECT COUNT(*) AS total_customers FROM Users;
+
+-- 23. Retrieve all orders where total amount is greater than $500
+SELECT * FROM Orders WHERE total_amount > 500;
+
+-- 24. List all products that have never been ordered
+SELECT * FROM Products WHERE product_id NOT IN (SELECT DISTINCT product_id FROM Order_Items);
+
+-- 25. Retrieve all orders along with the total number of items in each order
+SELECT Orders.order_id, SUM(Order_Items.quantity) AS total_items FROM Orders 
+JOIN Order_Items ON Orders.order_id = Order_Items.order_id GROUP BY Orders.order_id;
+
+-- 26. Find the total revenue per user
+SELECT Users.name, SUM(Orders.total_amount) AS total_spent FROM Users 
+JOIN Orders ON Users.user_id = Orders.user_id GROUP BY Users.name;
+
+-- 27. Retrieve the most recent order per user
+SELECT * FROM Orders WHERE order_date = (SELECT MAX(order_date) FROM Orders WHERE user_id = Orders.user_id);
+
+-- 28. Find users who have ordered more than once
+SELECT user_id, COUNT(*) AS order_count FROM Orders GROUP BY user_id HAVING order_count > 1;
+
+-- 29. Find the total quantity of each product sold
+SELECT product_id, SUM(quantity) AS total_sold FROM Order_Items GROUP BY product_id;
+
+-- 30. Retrieve all payments made using 'Credit Card'
+SELECT * FROM Payments WHERE payment_method = 'Credit Card';
+
+-- 31. Retrieve orders that contain more than 2 items
+SELECT order_id FROM Order_Items GROUP BY order_id HAVING SUM(quantity) > 2;
+
+-- 32. Retrieve orders sorted by highest total amount
+SELECT * FROM Orders ORDER BY total_amount DESC;
+
+-- 33. Find the average number of items per order
+SELECT AVG(total_items) FROM (SELECT order_id, SUM(quantity) AS total_items FROM Order_Items GROUP BY order_id) AS avg_items;
+
+-- 34. Find all users who have placed orders but never completed a payment
+SELECT DISTINCT Users.* FROM Users 
+JOIN Orders ON Users.user_id = Orders.user_id 
+LEFT JOIN Payments ON Orders.order_id = Payments.order_id WHERE Payments.payment_id IS NULL;
+
+-- 35. Retrieve the total number of orders per month
+SELECT MONTH(order_date) AS order_month, COUNT(*) AS total_orders FROM Orders GROUP BY order_month;
+
+-- 36. Find users who ordered the same product more than once
+SELECT user_id, product_id, COUNT(*) AS times_ordered FROM Order_Items 
+JOIN Orders ON Order_Items.order_id = Orders.order_id GROUP BY user_id, product_id HAVING times_ordered > 1;
+
+-- 37. Retrieve the last payment made
+SELECT * FROM Payments ORDER BY payment_id DESC LIMIT 1;
+
+-- 38. Find orders with the highest number of different products
+SELECT order_id, COUNT(DISTINCT product_id) AS unique_products FROM Order_Items GROUP BY order_id ORDER BY unique_products DESC LIMIT 1;
+
+-- 39. Find users who have purchased every product category
+SELECT user_id FROM Orders JOIN Order_Items ON Orders.order_id = Order_Items.order_id 
+JOIN Products ON Order_Items.product_id = Products.product_id 
+GROUP BY user_id HAVING COUNT(DISTINCT category) = (SELECT COUNT(DISTINCT category) FROM Products);
+
+-- 40. Find the product with the lowest stock
+SELECT * FROM Products ORDER BY stock ASC LIMIT 1;
+
+-- 41. Retrieve all orders placed on weekends
+SELECT * FROM Orders WHERE DAYOFWEEK(order_date) IN (1, 7);
+
+-- 42. Get the total revenue generated per category
+SELECT category, SUM(subtotal) AS total_revenue FROM Products 
+JOIN Order_Items ON Products.product_id = Order_Items.product_id GROUP BY category;
+
+-- 43. Find the oldest customer
+SELECT * FROM Users ORDER BY created_at ASC LIMIT 1;
+
+-- 44. Find orders that contain both 'Laptop' and 'Smartphone'
+SELECT order_id FROM Order_Items WHERE product_id IN (SELECT product_id FROM Products WHERE name IN ('Laptop', 'Smartphone')) 
+GROUP BY order_id HAVING COUNT(DISTINCT product_id) = 2;
+
+-- 45. Find products purchased by more than 3 different users
+SELECT product_id FROM Order_Items JOIN Orders ON Order_Items.order_id = Orders.order_id 
+GROUP BY product_id HAVING COUNT(DISTINCT user_id) > 3;
+
+-- 46. Retrieve orders where total amount is exactly $199.99
+SELECT * FROM Orders WHERE total_amount = 199.99;
+
+-- 47. Find the percentage of completed payments
+SELECT (COUNT(*) / (SELECT COUNT(*) FROM Payments) * 100) AS completion_rate FROM Payments WHERE payment_status = 'Completed';
+
+-- 48. Retrieve products purchased by 'Alice Johnson'
+SELECT Products.* FROM Products JOIN Order_Items ON Products.product_id = Order_Items.product_id 
+JOIN Orders ON Order_Items.order_id = Orders.order_id WHERE Orders.user_id = (SELECT user_id FROM Users WHERE name = 'Alice Johnson');
+
+-- 49. Find the most recent order that was paid with PayPal
+SELECT * FROM Orders JOIN Payments ON Orders.order_id = Payments.order_id 
+WHERE payment_method = 'PayPal' ORDER BY order_date DESC LIMIT 1;
+
+-- 50. Find the order with the highest number of items
+SELECT order_id FROM Order_Items GROUP BY order_id ORDER BY SUM(quantity) DESC LIMIT 1;
